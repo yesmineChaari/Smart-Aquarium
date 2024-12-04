@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "author": "Annisa Charisma",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -19.2, "left": -52.76, "attrs": {} },
+    {
+      "type": "wokwi-led-ring",
+      "id": "ring1",
+      "top": -104.96,
+      "left": -238.81,
+      "attrs": { "pixels": "16" }
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": 103.6, "left": 124.8, "attrs": {} },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 99.2,
+      "left": -287.2,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -75.3,
+      "left": 101.5,
+      "attrs": { "distance": "234" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": 19.96, "left": -105.6, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 172.8, "left": -106.2, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": 19.96, "left": 307.2, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": 124.8, "left": 345, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -47.7,
+      "left": -331.8,
+      "attrs": { "temperature": "50.2", "humidity": "49" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ring1:VCC", "vcc1:VCC", "red", [ "v28.8", "h67.2" ] ],
+    [ "ldr1:VCC", "vcc1:VCC", "red", [ "h0" ] ],
+    [ "ring1:GND", "gnd1:GND", "black", [ "v38.4", "h96" ] ],
+    [ "ldr1:GND", "gnd1:GND", "black", [ "h0" ] ],
+    [ "ldr1:AO", "esp:34", "green", [ "h48", "v-106.3" ] ],
+    [ "servo1:PWM", "esp:4", "green", [ "h-48", "v-38.2" ] ],
+    [ "ultrasonic1:VCC", "vcc2:VCC", "red", [ "v48", "h144" ] ],
+    [ "servo1:V+", "vcc2:VCC", "red", [ "h-19.2", "v-95.9", "h211.2" ] ],
+    [ "servo1:GND", "gnd2:GND", "black", [ "h9.6", "v-67.2", "h211.2" ] ],
+    [ "ultrasonic1:GND", "gnd2:GND", "black", [ "v67.2", "h152.4" ] ],
+    [ "ultrasonic1:ECHO", "esp:17", "green", [ "v0" ] ],
+    [ "ultrasonic1:TRIG", "esp:18", "green", [ "v0" ] ],
+    [ "ring1:DIN", "esp:12", "green", [ "v19.2", "h96", "v105.6" ] ],
+    [ "ring1:DOUT", "esp:35", "green", [ "v0" ] ],
+    [ "dht1:VCC", "vcc1:VCC", "red", [ "v0" ] ],
+    [ "dht1:GND", "gnd1:GND", "black", [ "v0" ] ],
+    [ "dht1:SDA", "esp:25", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
